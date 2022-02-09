@@ -1,0 +1,79 @@
+<html lang="en" xmlns:x-on="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Sidebar Menu</title>
+		<link href="sidebar.css" rel="stylesheet" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+			referrerpolicy="no-referrer"
+			rel="stylesheet"
+			crossorigin="anonymous"
+			integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+		/>
+        <script  src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>
+	</head>
+
+	<header id="header">
+		<i class="fas fa-bars" id="nav-toggle-btn"> </i>
+		<div>
+			<i class="fas fa-user-alt"></i>
+			<span>Tony Sweets</span>
+		</div>
+	</header>
+	<body>
+		<nav id="sidenav">
+            <div class="logo">
+                <i class="fab fa-gg-circle"></i>
+                <span>Skyline Sidebar</span>
+            </div>
+			<ul class="sidenav">
+				<li class="sidenav__item">
+                    <a href="#" class="sidenav__link" id="menu-item1"><i class="fas fa-home"></i>
+                        <span>Menu Item 1</span>
+                    </a>
+                </li>
+				<li class="sidenav__item">
+                    <a href="#" class="sidenav__link" id="menu-item2"><i class="far fa-address-card"></i>
+                        <span>Menu Item 2 <i class="fas fa-angle-down"></i></span>
+                    </a>
+                    <ul class="sidenav__submenu--none">
+                        <li><a href="#" class="sidenav__submenu-link">Sub Menu Item 1</a></li>
+                        <li><a href="#" class="sidenav__submenu-link" id="submenu-item2">Sub Menu Item 2</a></li>
+                        <li><a href="#" class="sidenav__submenu-link">Sub Menu Item 3</a></li>
+                    </ul>
+                </li>
+				<li class="sidenav__item">
+                    <a href="#" class="sidenav__link"><i class="fab fa-app-store"></i>
+                        <span>Menu Item 3</span>
+                    </a>
+                </li>
+				<li class="sidenav__item">
+                    <a href="#" class="sidenav__link"><i class="far fa-keyboard"></i>
+                        <span>Menu Item 4</span>
+                    </a>
+				</li>
+			</ul>
+		</nav>
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+            <div style="background-color: #e5e9f0; height: 200px; width: 300px; display: flex; flex-direction: column">
+                <p>Nav Menu Event Testing</p>
+                <button x-on:click="handleTestClick('menu-item1')" >Activate Menu 1</button>
+                <button x-on:click="handleTestClick('menu-item2','submenu-item2')">Activate Sub Menu 2</button>
+            </div>
+        </div>
+		<script src="sidebar.js"></script>
+
+	</body>
+</html>
+
+<script>
+ // Local JS Testing of menu events
+ function handleTestClick(menuItem, subMenuItem) {
+    // debugger;
+     console.log("Activate Menu 1 " + menuItem + subMenuItem);
+     document.getElementById(menuItem).click();
+
+     if (subMenuItem) {
+         document.getElementById(subMenuItem).click();
+     }
+ }
+</script>
