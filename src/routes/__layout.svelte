@@ -21,7 +21,7 @@
         <PortalHeader />
     </header>
 
-    <aside class="sidenav">
+    <aside class="sidenav" class:collapse="{$sidebarCollapsed}">
         <PortalSideNav/>
     </aside>
 

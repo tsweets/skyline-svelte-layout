@@ -1,20 +1,48 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900);
+:root {
+    --nav-width: 200px;
+    --nav-collapse-width: 80px;
+    --header-height: 75px;
+    --nav-bg-color: #81A1C1;
+    --active-color: #a3bebc;
+    --active-color2: #ebcb8b;
+    --color-dark: #2E3440;
+    --color-light: #e5e9f0;
+    --theme-primary: #7976b3;
+    --theme-secondary: #6c757d;
+    --theme-success: #1dc958;
+    --theme-info: #21e2f3;
+    --theme-warning: #b8ff41;
+    --theme-danger: #c139fd;
+    --theme-light: #fff;
+    --theme-dark: #555555;
+}
 
-    /* Global SCSS */
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     padding: 0;
-    color: #fff;
-    font-family: 'Open Sans', Helvetica, sans-serif;
-    box-sizing: border-box;
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #fff;
+    color: var(--color-dark);
+
 }
 
+a{
+    text-decoration: none;
+    color: var(--color-dark)
+}
 
-/* Assign grid instructions to our parent grid container, mobile-first (hide the sidenav) */
 .grid-container {
     display: grid;
-    grid-template-columns: 240px 1fr;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-columns: var(--nav-width) 1fr;
+    grid-template-rows: 60px 1fr 50px;
     grid-template-areas:
       'sidenav header'
       'sidenav main'
@@ -25,8 +53,8 @@ body {
 
 .grid-container.collapsed {
     display: grid;
-    grid-template-columns: 65px 1fr;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-columns: var(--nav-collapse-width) 1fr;
+    grid-template-rows: 60px 1fr 50px;
     grid-template-areas:
       'sidenav header'
       'sidenav main'
@@ -36,10 +64,91 @@ body {
 }
 
 
-/* Give every child element its grid name */
+
+/* Side Nav */
+.sidenav {
+    display: flex;
+    grid-area: sidenav;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    /*
+    background-color: var(--theme-primary);
+    */
+    width: var(--nav-width);
+    transition: width 0.3s ease-in-out;
+    box-shadow: 0 0 2px #343434;
+    background-image: linear-gradient(270deg,rgba(51,211,225,.18),transparent);
+    background-color: #4e4c77;
+}
+
+.sidenav .logo {
+    height: var(--header-height);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+ul.sidenav-menu, ul.sidenav-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidenav__link, .logo {
+    font-size: 14px;
+    display: block;
+    padding: 1rem;
+    color: var(--color-light);
+    white-space: nowrap;
+
+}
+
+.sidenav__link span, .logo span {
+    margin-left: 0.5rem;
+}
+
+
+.sidenav__link + ul a {
+    display: block;
+    padding: 1rem;
+    background-color: #e5e9f0;
+}
+
+
+.sidenav__link + ul a.sidenav__submenu-link--active {
+    background-color: var(--active-color2);
+}
+
+
+.sidenav__submenu--none {
+    display: none;
+}
+.sidenav__link--active {
+    position: relative;
+    color: var(--active-color);
+    /*background-color: rgba(0,0,0,0.3);*/
+    background-color: rgba(255,255,255,.04);
+}
+
+.sidenav__link--active:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 25px;
+    width: 3px;
+    margin: auto 0;
+    background-color: var(--active-color);
+
+}
+
 .header {
     grid-area: header;
-    background-color: #648ca6;
+    background-color: var(--theme-light);
     /*
     display: flex;
     align-items: center;
@@ -48,12 +157,18 @@ body {
      */
 }
 
+
+
 .header-container {
-    margin-top: 8px;
+    height: 50px;
+    margin-top: 0px;
     display: grid;
     grid-template-columns: 35px 100px 1fr;
     align-items: center;
     padding:0px 20px;
+    /*
+    box-shadow: 0 0 28px 0 rgba(86,61,124,.13);
+    */
 
 
 }
@@ -71,17 +186,19 @@ body {
     /*padding-top: 5px;*/
     justify-self: flex-end;
 }
-.sidenav {
-    display: flex; /* Will be hidden on mobile */
-    flex-direction: column;
-    grid-area: sidenav;
-    background-color: #394263;
-}
+
 
 .main {
     grid-area: main;
-    background-color: #8fd4d9;
+    background-image: url("static/images/brillant.png");
+    background-color: rgba(0,0,0,0.25);
+
+    /*
+    background-color: var(--theme-light);
+    */
+
 }
+
 
 .main-header {
     display: flex;
@@ -90,6 +207,11 @@ body {
     padding: 20px;
     height: 150px; /* Force our height since we don't have actual content yet */
     background-color: #e3e4e6;
+    box-shadow: 0 0 28px 0 rgba(86,61,124,.13);
+    border: 1px solid gray;
+    border-radius: 5px;
+
+
     color: slategray;
 }
 
@@ -100,6 +222,7 @@ body {
     grid-gap: 20px;
     margin: 20px;
 }
+
 
 .overviewcard {
     display: flex;
@@ -132,6 +255,56 @@ body {
     box-sizing: border-box;
 }
 
+
+
+.footer {
+    grid-area: footer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: #648ca6;
+}
+
+
+
+.collapse {
+    width: var(--nav-collapse-width);
+}
+
+.collapse i {
+    margin-left: 0.75rem;
+}
+
+.collapse span {
+    display: none;
+}
+
+.collapse-header {
+    padding-left: calc(var(--nav-collapse-width) + 1rem);
+}
+
+.collapse .sidenav__link + ul a {
+    font-size: .75rem;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding-left: 1rem;
+    }
+    .sidenav {
+        width: 0px;
+        overflow: hidden;
+    }
+
+    .sidenav__link span, .logo span {
+        display: none;
+    }
+
+}
+
+
+/* Temp Stuff */
 /* Force varying heights to simulate dynamic content */
 .card:first-child {
     height: 485px;
@@ -144,26 +317,3 @@ body {
 .card:nth-child(3) {
     height: 265px;
 }
-
-.footer {
-    grid-area: footer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    background-color: #648ca6;
-}
-
-
-/*
-   .v-sidebar-menu {
-       padding: 0;
-       !*
-       margin-top: 85px;
-       *!
-       list-style-type: none;
-       transition: max-width;
-
-   }
-*/
-
