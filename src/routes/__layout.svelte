@@ -5,6 +5,7 @@
     import OverviewCard from "$lib/./layout/overview-card/OverviewCard.svelte";
     import PortalCard from "$lib/./layout/portal-card/PortalCard.svelte";
     import PortalFooter from "$lib/./layout/portal-footer/PortalFooter.svelte";
+    import "../app.css";
     import '../layout.css';
     import {sidebarCollapsed} from "../stores";
 
